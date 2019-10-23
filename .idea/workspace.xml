@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fccf2755-ede9-4d3a-b54d-3cb1ce3aace4" name="Default Changelist" comment="" />
+    <list default="true" id="fccf2755-ede9-4d3a-b54d-3cb1ce3aace4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/inicio.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/inicio.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/libs/Application.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/libs/Application.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/login.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,26 +87,46 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="PHP" value="1" />
+          <entry key="PHP" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PHP" value="83" />
+          <entry key="PHP" value="1778" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="1" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="429">
-              <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-              <folding>
-                <element signature="e#2158#2164#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="520">
+              <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/controllers/LoginController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="963">
+              <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/views/register.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="480">
+              <caret line="42" column="97" selection-start-line="42" selection-start-column="97" selection-end-line="42" selection-end-column="97" />
             </state>
           </provider>
         </entry>
@@ -119,17 +145,11 @@
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/vendor/kint-php/kint" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/application/Core/Session.php" />
-        <option value="$PROJECT_DIR$/application/Controller/HomeController.php" />
-        <option value="$PROJECT_DIR$/application/view/respuestas/formulariorespuesta.php" />
-        <option value="$PROJECT_DIR$/application/view/respuestas/actualizarrespuesta.php" />
-        <option value="$PROJECT_DIR$/application/view/registro/usuarioRegistrado.php" />
-        <option value="$PROJECT_DIR$/application/view/Albums/todos.php" />
         <option value="$PROJECT_DIR$/application/view/fotos/formulariofotos.php" />
         <option value="$PROJECT_DIR$/application/view/albums/formularioalbum.php" />
         <option value="$PROJECT_DIR$/application/Model/Foto.php" />
@@ -174,7 +194,13 @@
         <option value="$PROJECT_DIR$/application/Model/Pregunta.php" />
         <option value="$PROJECT_DIR$/application/view/preguntas/todas.php" />
         <option value="$PROJECT_DIR$/application/config/config.php" />
+        <option value="$PROJECT_DIR$/app/views/footer.php" />
+        <option value="$PROJECT_DIR$/app/inicio.php" />
         <option value="$PROJECT_DIR$/app/views/login.php" />
+        <option value="$PROJECT_DIR$/app/libs/Application.php" />
+        <option value="$PROJECT_DIR$/app/views/header.php" />
+        <option value="$PROJECT_DIR$/app/views/register.php" />
+        <option value="$PROJECT_DIR$/app/controllers/LoginController.php" />
       </list>
     </option>
   </component>
@@ -214,6 +240,24 @@
               <item name="MVC2019" type="b2602c69:ProjectViewProjectNode" />
               <item name="MVC2019" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MVC2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVC2019" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MVC2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVC2019" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="libs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="MVC2019" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MVC2019" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MVC2019" type="b2602c69:ProjectViewProjectNode" />
@@ -293,12 +337,12 @@
       <workItem from="1559316658868" duration="740000" />
       <workItem from="1559827505942" duration="9258000" />
       <workItem from="1560432489007" duration="13000" />
-      <workItem from="1571837258943" duration="426000" />
+      <workItem from="1571837258943" duration="5667000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89417000" />
+    <option name="totallyTimeSpent" value="94658000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="0" width="1922" height="1059" extended-state="6" />
@@ -353,13 +397,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public/img/201904111556143242juanmanuel.png" />
-    <entry file="file://$PROJECT_DIR$/public/img/201904111555577793juanmanuel.png" />
-    <entry file="file://$PROJECT_DIR$/public/img/201904111525535985images.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/img/201905021412023285images.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/img/201905021439299618images.jpeg" />
-    <entry file="file://$PROJECT_DIR$/public/img/photos201905021449148799images.jpeg" />
-    <entry file="file://$PROJECT_DIR$/application/view/fotos/formulariofotos.php" />
     <entry file="file://$PROJECT_DIR$/application/view/albums/formularioalbum.php" />
     <entry file="file://$PROJECT_DIR$/application/view/albums/todos.php" />
     <entry file="file://$PROJECT_DIR$/application/view/albums/show.php" />
@@ -403,13 +440,55 @@
     <entry file="file://$PROJECT_DIR$/application/config/config.php" />
     <entry file="file://$PROJECT_DIR$/application/view/preguntas/todas.php" />
     <entry file="file://$PROJECT_DIR$/application/Controller/PreguntasController.php" />
+    <entry file="file://$PROJECT_DIR$/app/views/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/register.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/inicio.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="49" selection-start-line="4" selection-start-column="49" selection-end-line="4" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/libs/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="60" column="14" selection-start-line="60" selection-start-column="14" selection-end-line="60" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="35" column="50" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
-          <folding>
-            <element signature="e#2158#2164#0#HTML" expanded="true" />
-          </folding>
+        <state relative-caret-position="520">
+          <caret line="26" column="44" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="42" column="97" selection-start-line="42" selection-start-column="97" selection-end-line="42" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="963">
+          <caret line="91" column="53" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
         </state>
       </provider>
     </entry>

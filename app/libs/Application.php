@@ -56,9 +56,9 @@ class Application
 		else 
         {
 	        header('HTTP/1.0 404 Not Found');
-	        require APP . 'Controller/ErrorController.php';
-	        $cont_error = new ErrorController('Este controlador no existe');
-	        $cont_error->index();
+	       // require APP . 'Controller/ErrorController.php';
+	        //$cont_error = new ErrorController('Este controlador no existe');
+	        //$cont_error->index();
 	    }
 	}
 
