@@ -91,6 +91,18 @@ class LoginController extends Controller
             {
                 array_push($errors, 'El codigo postal no puede estar vacia');
             }
+            if( ! filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                array_push($errors, 'El email no es valido');
+            }
+            if(count($errors == 0))
+            {
+                //damos de alta
+            }
+            else
+            {
+                var_dump($errors);
+            }
         }
 
     }
