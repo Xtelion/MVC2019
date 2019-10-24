@@ -56,6 +56,7 @@ class LoginController extends Controller
                 'last_name_1' => $last_name_1,
                 'last_name_2' => $last_name_2,
                 'email' => $email,
+                'password' => $password1,
                 'address' => $address,
                 'city' => $city,
                 'state' => $state,
@@ -109,7 +110,20 @@ class LoginController extends Controller
             }
             if(count($errors) == 0)
             {
-                //damos de alta
+                if($this->model->createUser($dataForm))
+                {
+                    print_r("Insertado");
+                }else
+                {
+                    array_push($errors, 'El correo corresponde a un usuario ya creado');
+                    $data = [
+                        'title' => 'Registro',
+                        'menu' => false,
+                        'errors' => $errors,
+                        'data' => $dataForm
+                    ];
+                    $this->view('register', $data);
+                }
             }
             else
             {
