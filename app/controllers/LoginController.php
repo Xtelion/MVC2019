@@ -23,7 +23,44 @@ class LoginController extends Controller
 
 	public function olvido()
     {
-        print 'Me se ha olvidao la contraseña';
+        if(!$_POST)
+        {
+            $data = [
+                'title' => 'Recordar la contraseña',
+                'menu' => false,
+                'subtitle' => '¿Olvidaste tu contraseña?'
+            ];
+            $this->view('olvido', $data);
+        }
+        else
+        {
+            $errors = [];
+
+            $email = isset($_POST['email']) ? $_POST['email'] : '';
+
+            if($email == '')
+            {
+                array_push($errors, 'El email no puede estar vacio');
+            }
+
+            if( ! filter_var($email, FILTER_VALIDATE_EMAIL))
+            {
+                array_push($errors, 'El email no es valido');
+            }
+
+            if($errors)
+            {
+                if(!$this->model->existsEmail($email))
+                {
+                    array_push($errors, 'El correo no esta registrado');
+                }
+                else
+                {
+                    //$this->model->sendEmail($email);
+                }
+            }
+        }
+
     }
 
     public function registro()
@@ -112,10 +149,19 @@ class LoginController extends Controller
             {
                 if($this->model->createUser($dataForm))
                 {
-                    print_r("Insertado");
+                    $data = [
+                        'menu' => false,
+                        'title' => 'Armazon',
+                        'subtitle' => 'Bienvenido a Armazon.com',
+                        'alert' => 'info',
+                        'text' => 'En armazon encontraras productos de todo tipo',
+                 //       'url' => 'menu'  //esta linea casca
+                    ];
+                    $this->view('usuarioRegistrado', $data);
+                    //print_r("Insertado");
                 }else
                 {
-                    array_push($errors, 'El correo corresponde a un usuario ya creado');
+                    array_push($errors, 'El correo ya esta registrado, inicie su sesion');
                     $data = [
                         'title' => 'Registro',
                         'menu' => false,
