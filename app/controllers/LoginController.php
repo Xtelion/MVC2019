@@ -51,6 +51,18 @@ class LoginController extends Controller
             $country = isset($_POST['country']) ? $_POST['country'] : '';
             $city = isset($_POST['city']) ? $_POST['city'] : '';
 
+            $dataForm = [
+                'first_name' => $first_name,
+                'last_name_1' => $last_name_1,
+                'last_name_2' => $last_name_2,
+                'email' => $email,
+                'address' => $address,
+                'city' => $city,
+                'state' => $state,
+                'postCode' => $postCode,
+                'country' => $country
+            ];
+
             if($first_name == '')
             {
                 array_push($errors, 'El nombre no puede estar vacio');
@@ -65,9 +77,9 @@ class LoginController extends Controller
             }
             if($password1 == '')
             {
-                array_push($errors, 'La contraseña no puede estar vacio');
+                array_push($errors, 'La contraseña no puede estar vacia');
             }
-            if($password2 != $password1)
+            elseif($password2 != $password1)
             {
                 array_push($errors, 'Las contraseñas deben ser iguales');
             }
@@ -95,13 +107,19 @@ class LoginController extends Controller
             {
                 array_push($errors, 'El email no es valido');
             }
-            if(count($errors == 0))
+            if(count($errors) == 0)
             {
                 //damos de alta
             }
             else
             {
-                var_dump($errors);
+                $data = [
+                    'title' => 'Registro',
+                    'menu' => false,
+                    'errors' => $errors,
+                    'data' => $dataForm
+                ];
+                $this->view('register', $data);
             }
         }
 

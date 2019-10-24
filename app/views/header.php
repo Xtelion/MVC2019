@@ -48,3 +48,19 @@
         <div class="col-2">
 
         </div>
+        <div class="col-8">
+
+
+
+            <?php if(isset($data['errors']) && count($data['errors']) > 0) : ?>
+
+                <div class="alert alert-warning mt-3">
+                    <ul class="list-item">
+                <?php foreach($data['errors'] as $error) : ?>
+
+                        <li class=""><?= $error ?></li>
+
+                <?php endforeach ?>
+                    </ul>
+                </div>
+            <?php endif ?>
