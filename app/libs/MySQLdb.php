@@ -1,45 +1,41 @@
 <?php
 
 /**
-* Base de datos
-*/
+ * Manejo de la base de datos
+ */
 class MySQLdb
 {
 	
-	private $host = "mysql";
-	private $user = "root";
-	private $pass = "root";
-	private $dbname = "MVC2019";
+	private $host = 'mysql';
+	private $user = 'root';
+	private $pass = 'root';
+	private $dbname = 'MVC2019';
 
 	private static $instance = null;
 	private $db = null;
 
 	private function __construct()
 	{
-		$options = [ 
-			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, 
+		$options = [
+			PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
 		];
 
-		try
-		{
+		try {
 			$this->db = new PDO(
-				'mysql:host=' .$this->host . ';dbname=' . $this->dbname,
+				'mysql:host=' . $this->host . ';dbname=' . $this->dbname,
 				$this->user,
 				$this->pass,
 				$options
 			);
-		} catch(PDOException $event)
-		{
-			exit('La base de datos esta kaboom');
+		} catch (PDOException $e) {
+			exit('La base de datos está inaccesible');
 		}
-
 	}
 
 	public static function getInstance()
 	{
-		if(is_null(self::$instance))
-		{
+		if (is_null(self::$instance)) {
 			self::$instance = new MySQLdb();
 		}
 
@@ -50,5 +46,18 @@ class MySQLdb
 	{
 		return $this->db;
 	}
-		
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

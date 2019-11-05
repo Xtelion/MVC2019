@@ -1,8 +1,8 @@
 <?php
 
 /**
-* La clase Application procesa la URL.
-*/
+ * La clase Application procesa la URL.
+ */
 class Application
 {
 	private $url_controller = null;
@@ -13,59 +13,39 @@ class Application
 	{
 		$url = $this->separarURL();
 
-		if( ! $this->url_controller )
-		{
-			require_once('../app/controllers/LoginController.php');
+		if ( ! $this->url_controller) {
+			require_once ('../app/controllers/LoginController.php');
+			$page = new LoginController();
+			$page->index();
+		} elseif (file_exists('../app/controllers/'.ucfirst($this->url_controller).'Controller.php')) {
+			$controller = ucfirst($this->url_controller) . 'Controller';
+			require_once ('../app/controllers/' . $controller . '.php');
+			$this->url_controller = new $controller;
+
+			if (method_exists($this->url_controller, $this->url_action) && is_callable(array($this->url_controller, $this->url_action))) {
+
+				if ( ! empty($this->url_params)) {
+					call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
+				} else {
+					$this->url_controller->{$this->url_action}();
+				}
+			} else {
+				if (strlen($this->url_action) == 0) {
+					$this->url_controller->index();
+				} else {
+					header('HTTP/1.0 404 Not Found');
+				}
+			}
+		} else {
+			require_once ('../app/controllers/LoginController.php');
 			$page = new LoginController();
 			$page->index();
 		}
-		elseif( file_exists('../app/controllers/' .ucfirst($this->url_controller). 'Controller.php') )
-		{
-			$controller = ucfirst($this->url_controller) . 'Controller';
-			require_once('../app/controllers/'.$controller.'.php');
-			$this->url_controller = new $controller;
-
-			if( method_exists($this->url_controller, $this->url_action) 
-			&& is_callable(array($this->url_controller, $this->url_action)) )
-			{
-				if( ! empty($this->url_params) )
-				{
-					call_user_func_array(array($this->url_controller, $this->url_action), $this->url_params);
-				}
-				else
-				{
-					$this->url_controller->{$this->url_action}();
-				}
-			}
-			else 
-			{
-                if (strlen($this->url_action) == 0)
-                {
-                    $this->url_controller->index();
-                }
-                else 
-                {
-                    header('HTTP/1.0 404 Not Found');
-                    //require_once('Controller/ErrorController.php');
-                    //$cont_error = new ErrorController('Esta acción no existe');
-                    //$cont_error->index();
-
-                }
-            }                          
-		}
-		else 
-        {
-	        header('HTTP/1.0 404 Not Found');
-	       // require APP . 'Controller/ErrorController.php';
-	        //$cont_error = new ErrorController('Este controlador no existe');
-	        //$cont_error->index();
-	    }
 	}
 
 	public function separarURL()
 	{
-		if($_SERVER['REQUEST_URI'] != '/')
-		{
+		if ($_SERVER['REQUEST_URI'] != '/') {
 			$url = trim($_SERVER['REQUEST_URI'], '/');
 			$url = filter_var($url, FILTER_SANITIZE_URL);
 			$url = explode('/', $url);
@@ -76,6 +56,6 @@ class Application
 			unset($url[0], $url[1]);
 
 			$this->url_params = array_values($url);
-		}		
+		}
 	}
 }
