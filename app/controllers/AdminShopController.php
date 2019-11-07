@@ -18,14 +18,20 @@ class AdminShopController extends Controller
 
     public function index()
     {
-        $data = [
-            'title' => 'Administración | Inicio',
-            'menu' => false,
-            'admin' => true,
-            'subtitle' => 'Administracion de la tienda'
-        ];
+        $session = new Session();
 
-        $this->view('admin/shop/index', $data);
+        if ($session->getLogin()) {
+            $data = [
+                'title' => 'Administración | Inicio',
+                'menu' => false,
+                'admin' => true,
+                'subtitle' => 'Administracion de la tienda'
+            ];
+
+            $this->view('admin/shop/index', $data);
+        } else {
+            header('location:' . ROOT . 'admin');
+        }
     }
 
 }

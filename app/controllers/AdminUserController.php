@@ -14,13 +14,25 @@ class AdminUserController extends Controller
 
 	public function index()
 	{
-		$data = [
-			'title'	=> 'Administración de Usuarios',
-			'menu'	=> false,
-			'admin'	=> true
-		];
+	    $session = new Session();
 
-		$this->view('admin/users/index', $data);
+	    if($session->getLogin())
+        {
+            $users = $this->model->getUsers();
+            $data = [
+                'title'	=> 'Administración de Usuarios',
+                'menu'	=> false,
+                'admin'	=> true,
+                'users' => $users
+            ];
+
+            $this->view('admin/users/index', $data);
+        }
+        else
+        {
+            header('location:' .ROOT. 'admin');
+        }
+
 	}
 
 	public function create()
@@ -99,14 +111,98 @@ class AdminUserController extends Controller
 		}
 	}
 
-	public function update()
+	public function update($id)
 	{
-		print 'Modificación de usuarios';
+        $errors = [];
+		if($_POST)
+        {
+            $name = isset($_POST['name']) ? $_POST['name'] : '';
+            $email = isset($_POST['email']) ? $_POST['email'] : '';
+            $password = isset($_POST['password1']) ? $_POST['password1'] : '';
+            $password2 = isset($_POST['password2']) ? $_POST['password2'] : '';
+            $status = isset($_POST['status']) ? $_POST['status'] : '';
+
+            if(empty($name))
+            {
+                array_push($errors, 'El nombre del administrador es obligatorio');
+            }
+            if(empty($email))
+            {
+                array_push($errors, 'El correo electronico del administrador es obligatorio');
+            }
+            if($status == '')
+            {
+                array_push($errors, 'Debe seleccionar un estado');
+            }
+            if( ! empty($password) || ! empty($password2))
+            {
+                if($password2 != $password)
+                {
+                    array_push($errors, 'Las contraseñan deben ser iguales');
+                }
+            }
+
+
+            if(count($errors) == 0)
+            {
+                $dataForm = [
+                    'id' => $id,
+                    'name' => $name,
+                    'email' => $email,
+                    'password' => $password,
+                    'status' => $status
+                ];
+                $errors = $this->model->setUser($dataForm);
+            }
+            if(empty($errors))
+            {
+                header('location:' .ROOT. 'AdminUser');
+            }
+
+        }
+
+        $user = $this->model->getUserById($id);
+        $status = $this->model->getConfig('adminStatus');
+
+        $data = [
+            'title' => 'Administracion de usuarios | Modificar',
+            'menu' => false,
+            'admin' => true,
+            'user' => $user,
+            'status' => $status,
+            'errors' => $errors
+        ];
+        $this->view('admin/users/update', $data);
+
 	}
 
-	public function delete()
+	public function delete($id)
 	{
-		print 'Eliminación de usuarios';
+        $errors = [];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST')
+        {
+            $errors = $this->model->delete($id);
+
+            if(empty($errors))
+            {
+                header('location:' . ROOT . 'AdminUser');
+            }
+        }
+
+        $user = $this->model->getUserById($id);
+        $status = $this->model->getConfig('adminStatus');
+
+        $data = [
+            'title' => 'Administracion de usuarios | Eliminar',
+            'menu' => false,
+            'admin' => true,
+            'user' => $user,
+            'status' => $status,
+            'errors' => $errors
+        ];
+
+        $this->view('admin/users/delete', $data);
 	}
 }
 

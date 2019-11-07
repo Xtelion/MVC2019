@@ -53,6 +53,9 @@ class AdminController extends Controller
 
                 if (!$errors)
                 {
+                    $session = new Session();
+
+                    $session->login($dataForm);
                     header('location:' .ROOT. 'AdminShop');
                 }
             }

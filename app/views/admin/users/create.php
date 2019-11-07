@@ -4,7 +4,7 @@
 		<h1 class="text-center">Alta de un usuario administrador</h1>
 	</div>
 	<div class="card-body">
-		<form action="<?= ROOT ?>adminuser/create" method="POST">
+		<form action="<?= ROOT ?>AdminUser/create" method="POST">
 			<div class="form-group text-left">
 				<label for="name">Usuario:</label>
 				<input type="text" name="name" class="form-control" placeholder="Escribe tu nombre completo" required value="<?= isset($data['data']['name']) ? $data['data']['name'] : '' ?>">
@@ -23,7 +23,7 @@
 			</div>
 			<div class="form-group text-left">
 				<input type="submit" value="Enviar" class="btn btn-success">
-				<a href="<?= ROOT ?>adminuser" class="btn btn-info">Cancelar</a>
+				<a href="<?= ROOT ?>AdminUser" class="btn btn-info">Cancelar</a>
 			</div>
 		</form>
 	</div>

@@ -18,7 +18,7 @@ class Admin
 
 		$password = hash_hmac('sha512', $data['password'], ENCRIPTKEY);
 
-		$sql = 'SELECT * FROM admins WHERE email=:email';
+		$sql = 'SELECT * FROM admins WHERE email=:email AND status = 1';
 		$query = $this->db->prepare($sql);
 		$query->execute([':email' => $data['email']]);
 		$admins = $query->fetchAll(PDO::FETCH_OBJ);
@@ -28,8 +28,16 @@ class Admin
 		} elseif (count($admins) > 1) {
 			array_push($errors, 'El correo electrónico está duplicado');
 		} elseif ( $password != $admins[0]->password) {
-			array_push($errors, 'La clave de acceso no es correcta');
-		} else  {
+            array_push($errors, 'La clave de acceso no es correcta');
+        }
+        elseif ($admins[0]->status == 0)
+        {
+            array_push($errors, 'El usuario está desactivado');
+		}
+		elseif($admins[0]->deleted == 1)
+        {
+            array_push($errors, 'El usuario está eliminado');
+        }else  {
 			$sql2 = 'UPDATE admins SET login_at=:login_at WHERE id=:id';
 			$query2 = $this->db->prepare($sql2);
 			$params = [
