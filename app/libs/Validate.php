@@ -19,8 +19,7 @@ class Validate
     public static function date($string)
     {
         $date = explode('-', $string);
-        if(count($date) == 1)
-        {
+        if (count($date) == 1) {
             return false;
         }
         return checkdate($date[1], $date[2], $date[0]);
