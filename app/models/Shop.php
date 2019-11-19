@@ -34,4 +34,19 @@ class Shop
         $query->execute([':id' => $id]);
         return $query->fetch();
     }
+
+    public function sendEmail($name, $email, $message)
+    {
+        $msg = $name . ' Ha enviado un mensaje nuevo.<br>';
+        $msg.='Su correo es ' .$email . '<br>';
+        $msg .= 'Mensaje:<br>' .message;
+        $headers = 'MIME-Version: 1.0\r\n';
+        $headers.= 'Content-type:text/html; charset=UTF-8\r\n';
+        $headers.= 'From: '. $name .'\r\n';
+        $headers.= 'Reply-to:' .$email. '\r\n';
+
+        $subject = 'Mensaje del usuario ' .$name;
+
+        return mail('info@shopmvc.local', $subject, $msg, $headers);
+    }
 }

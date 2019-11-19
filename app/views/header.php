@@ -3,6 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title><?= $data['title'] ?></title>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/78fd884096.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -10,7 +12,11 @@
 </head>
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-		<a href="<?= ROOT ?>index.php" class="navbar-brand">Tienda</a>
+        <?php if ($data['menu']): ?>
+		<a href="<?php ROOT ?>shop" class="navbar-brand">Tienda</a>
+        <?php else : ?>
+        <a href="<?php ROOT ?>index.php" class="navbar-brand">Tienda</a>
+        <?php endif ?>
 		<div class="collapse navbar-collapse" id="menu">
 			<?php if ($data['menu']): ?>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -28,6 +34,18 @@
                     </li>
                 </ul>
             <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <?php if ($_SERVER['REQUEST_URI'] == '/courses'): ?>
+                        <form action="<?= ROOT ?>search/products/courses" method="POST" class="form-inline">
+                    <?php elseif($_SERVER['REQUEST_URI'] == '/books') : ?>
+                        <form action="<?= ROOT ?>search/products/books" method="POST" class="form-inline">
+                    <?php else : ?>
+                        <form action="<?= ROOT ?>search/products" method="POST" class="form-inline">
+                    <?php endif ?>
+                        <input type="text" name="search" class="form-control" size="20" required>
+                        <button class="btn btn-light"><i class="fab fa-searchengin"></i></button>
+                    </form>
+                </li>
                 <li class="nav-item">
                     <a href="<?= ROOT . 'shop/logout' ?>" class="nav-link">Salir</a>
                 </li>
