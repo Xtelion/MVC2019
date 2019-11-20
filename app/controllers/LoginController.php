@@ -308,7 +308,9 @@ class LoginController extends Controller
 
                 $session = new Session();
 
-                $session->login($dataForm['user']);
+                $dataUser = $this->model->getUserByEmail($user);
+
+                $session->login($dataUser);
 
                 header('location:' . ROOT . 'shop');
             } else {

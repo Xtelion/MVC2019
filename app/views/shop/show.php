@@ -24,4 +24,6 @@
         <?= html_entity_decode($data['data']->description) ?>
     <?php endif ?>
     <a href="<?= ROOT . $data['back']?>" class="btn btn-outline-success">Volver al listado de productos</a>
+
+    <a href="<?= ROOT ?>cart/addProducts/<?= $data['data']->id ?>/<?= $data['user'] ?>" class="btn btn-outline-info"><i class="fas fa-cart-plus"></i></a>
 <?php include_once(VIEWS .'footer.php')?>

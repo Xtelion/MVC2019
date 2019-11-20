@@ -44,7 +44,9 @@ class ShopController extends Controller
 
     public function show($id, $back = 'shop')
     {
+        $session = new Session();
         $product = $this->model->getProductById($id);
+        $user = $session->getUserId();
 
         $data = [
             'title' => 'Detalle del producto',
@@ -52,6 +54,7 @@ class ShopController extends Controller
             'menu' => true,
             'admin' => false,
             'data' => $product,
+            'user' => $user,
             'back' => $back
         ];
 
