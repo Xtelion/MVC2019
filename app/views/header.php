@@ -4,7 +4,8 @@
 	<meta charset="UTF-8">
 	<title><?= $data['title'] ?></title>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/78fd884096.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-xVVam1KS4+Qt2OrFa+VdRUoXygyKIuNWUUUBZYv+n27STsJ7oDOHJgfF0bNKLMJF" crossorigin="anonymous">
+    <!--<script src="https://kit.fontawesome.com/78fd884096.js" crossorigin="anonymous"></script>-->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -34,6 +35,11 @@
                     </li>
                 </ul>
             <ul class="nav navbar-nav navbar-right">
+                <?php if (isset($_SESSION['cartTotal']) && $_SESSION['cartTotal'] > 0): ?>
+                <li class="nav-item">
+                    <a href="<?= ROOT ?>cart" class="nav-link"><i class="far fa-shopping-cart"></i>&nbsp;<?= number_format($_SESSION['cartTotal'],2) ?>&euro;</a>
+                </li>
+                <?php endif ?>
                 <li class="nav-item">
                     <?php if ($_SERVER['REQUEST_URI'] == '/courses'): ?>
                         <form action="<?= ROOT ?>search/products/courses" method="POST" class="form-inline">

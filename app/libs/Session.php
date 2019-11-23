@@ -7,6 +7,7 @@ class Session
 {
 	private $login = false;
 	private $user;
+	private $cartTotal;
 	
 	function __construct()
 	{
@@ -14,6 +15,8 @@ class Session
 		if (isset($_SESSION['user'])) {
 			$this->user = $_SESSION['user'];
 			$this->login = true;
+			$_SESSION['cartTotal'] = $this->cartTotal();
+			$this->cartTotal = $_SESSION['cartTotal'];
 		} else {
 			unset($this->user);
 			$this->login = false;
@@ -48,6 +51,19 @@ class Session
 	public function getUserId()
     {
         return $this->user->id;
+    }
+
+    public function cartTotal()
+    {
+        $db = MySQLdb::getInstance()->getDatabase();
+        $sql = 'SELECT SUM(p.price * c.quantity) - SUM(c.discount) + SUM(c.send) as total 
+                FROM products p, carts c WHERE p.id = c.product_id AND c.user_id = :user AND state = 0';
+
+        $query = $db->prepare($sql);
+        $query->execute([':user' => $this->getUserId()]);
+        $data = $query->fetch();
+        //$db->close();
+        return ($data->total ?? 0);
     }
 }
 

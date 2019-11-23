@@ -54,4 +54,39 @@ class Cart
         return $query->rowCount();
     }
 
+    public function getCart($user_id)
+    {
+        $sql = 'SELECT c.id, c.user_id as user, c.product_id as product, c.quantity as quantity,
+              c.send as send, c.discount as discount, p.price as price, p.image as image,
+              p.name as name, p.description as description
+              FROM carts c, products p WHERE c.user_id = :user_id AND c.product_id = p.id';
+        $query = $this->db->prepare($sql);
+        $query->execute([':user_id' => $user_id]);
+        return $query->fetchAll();
+    }
+
+    public function update($user, $product, $quantity)
+    {
+        $sql = 'UPDATE carts SET quantity=:quantity WHERE user_id = :user_id AND product_id = :product_id';
+        $query = $this->db->prepare($sql);
+        $params = [
+            ':user_id' => $user,
+            ':product_id' => $product,
+            ':quantity' => $quantity
+        ];
+        return $query->execute($params);
+    }
+
+    public function delete($product, $user)
+    {
+        $sql = 'DELETE FROM carts WHERE user_id = :user_id AND product_id = :product_id';
+
+        $query = $this->db->prepare($sql);
+        $params = [
+            ':product_id' => $product,
+            ':user_id' => $user
+        ];
+        return $query->execute($params);
+    }
+
 }

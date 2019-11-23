@@ -20,7 +20,7 @@
                             <td class="text-center"><?= $product->id ?></td>
                             <td class="text-center"><?= $data['type'][$product->type -1]->description ?></td>
                             <td class="text-center"><?= $product->name ?></td>
-                            <td class="text-center"><?= html_entity_decode($product->description) ?></td>
+                            <td class="text-center"><?= substr(html_entity_decode($product->description), 0, 50) ?>...</td>
                             <td><a href="<?= ROOT ?>AdminProduct/update/<?= $product->id ?>"
                                             class="btn btn-outline-info">Modificar</a></td>
                             <td><a href="<?= ROOT ?>AdminProduct/delete/<?= $product->id ?>"

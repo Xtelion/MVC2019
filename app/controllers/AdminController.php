@@ -55,7 +55,9 @@ class AdminController extends Controller
                 {
                     $session = new Session();
 
-                    $session->login($dataForm);
+                    $dataUser = $this->model->getUserByEmail($email);
+
+                    $session->login($dataUser);
                     header('location:' .ROOT. 'AdminShop');
                 }
             }
