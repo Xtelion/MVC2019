@@ -188,4 +188,16 @@ class CartController extends Controller
         $this->view('admin/carts/show', $data);
     }
 
+    public function chartDailySales()
+    {
+        $sales = $this->model->dailySales();
+        $data = [
+            'title' => 'Ventas diarias',
+            'menu' => false,
+            'admin' => true,
+            'data' => $sales
+        ];
+        $this->view('admin/carts/dailysales', $data);
+    }
+
 }

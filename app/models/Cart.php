@@ -127,4 +127,15 @@ class Cart
         return $query->fetchAll();
     }
 
+    public function dailySales()
+    {
+        $sql = 'SELECT (SUM(p.price * c.quantity) - SUM(c.discount) + SUM(c.send)) as sale,
+                DATE(c.date) as date FROM carts c, products p WHERE c.product_id = p.id AND c.state = 1
+                GROUP BY date(c.date)';
+
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        return $query->fetchAll();
+    }
+
 }

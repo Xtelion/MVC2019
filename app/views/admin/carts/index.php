@@ -31,7 +31,7 @@
         </table>
     </div>
     <div class="footer">
-        <a href="<?= ROOT ?>" class="btn btn-outline-success">Grafico de ventas por dia</a>
+        <a href="<?= ROOT ?>cart/chartDailySales" class="btn btn-outline-success">Grafico de ventas por dia</a>
     </div>
 </div>
 
