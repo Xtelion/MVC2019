@@ -32,7 +32,7 @@ class CartController extends Controller
                 'data' => $cart,
                 'errors' => $errors
             ];
-            $this->view('cart/index', $data);
+            $this->view('carts/index', $data);
         }
         else
         {
@@ -130,6 +130,62 @@ class CartController extends Controller
             'menu'	=> true
         ];
         $this->view('carts/verify', $data);
+    }
+
+    public function thanks()
+    {
+        $session = new Session();
+        $user = $session->getUser();
+
+        if($this->model->closeCart($user->id, 1))
+        {
+            $data = [
+                'title' => 'Carrito | Gracias por su compra',
+                'user'	=> $user,
+                'menu'	=> true
+            ];
+            $this->view('carts/thanks', $data);
+        }
+        else
+        {
+            $data = [
+                'title'	=> 'Error en la actualizacion del carrito',
+                'menu'	=> false,
+                'subtitle' => 'Error al actualizar los productos del carrito',
+                'text' => 'Existió un error al actualizar el estado del carrito, por favor pruebe mas tarde y 
+                comuniquese con un administrador',
+                'color'	=> 'danger',
+                'url'	=> 'shop',
+                'colorButton' => 'danger',
+                'textButton'  => '<i class="fal fa-igloo"></i>'
+            ];
+            $this->view('mensaje', $data);
+        }
+    }
+
+    public function sales()
+    {
+        $sales = $this->model->sales();
+        $data = [
+            'title' => 'Ventas',
+            'menu' => false,
+            'admin' => true,
+            'data' => $sales
+        ];
+        $this->view('admin/carts/index', $data);
+    }
+
+    public function show($date, $id)
+    {
+        $cart = $this->model->show($date, $id);
+        $data = [
+            'title' => 'Detalle de la venta',
+            'menu' => false,
+            'admin' => true,
+            'date' => $date,
+            'data' => $cart
+        ];
+        $this->view('admin/carts/show', $data);
     }
 
 }

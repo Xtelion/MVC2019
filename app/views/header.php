@@ -14,9 +14,9 @@
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <?php if ($data['menu']): ?>
-		<a href="<?php ROOT ?>shop" class="navbar-brand">Tienda</a>
+		<a href="<?= ROOT. 'shop' ?>" class="navbar-brand">Tienda</a>
         <?php else : ?>
-        <a href="<?php ROOT ?>index.php" class="navbar-brand">Tienda</a>
+        <a href="<?= ROOT ?>index.php" class="navbar-brand">Tienda</a>
         <?php endif ?>
 		<div class="collapse navbar-collapse" id="menu">
 			<?php if ($data['menu']): ?>
@@ -65,6 +65,9 @@
                     <li class="nav-item">
 						<a href="<?= ROOT ?>AdminProduct" class="nav-link">Productos</a>
 					</li>
+                    <li class="nav-item">
+                        <a href="<?= ROOT ?>cart/sales" class="nav-link">Ventas</a>
+                    </li>
 				</ul>
 			<?php endif ?>
 		</div>
